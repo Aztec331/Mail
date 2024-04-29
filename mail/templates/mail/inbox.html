@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block body %}
-    <!-- in projects below refers to "displayed in h2 element" -->
+    <!-- in projects below refers to "displayed in h2" -->
     <h7>{{ request.user.email }}</h7><br>
 
     <button class="btn btn-sm btn-outline-primary" id="inbox">Inbox</button>
@@ -13,6 +13,7 @@
     <hr>
 
     <!-- emails-view -->
+    <!-- emails-views lies here , they include - 'inbox','sent' and 'archived' -->
     <div id="emails-view">
     </div>
 
