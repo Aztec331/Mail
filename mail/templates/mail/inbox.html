@@ -2,7 +2,8 @@
 {% load static %}
 
 {% block body %}
-    <h2>{{ request.user.email }}</h2>
+    <!-- in projects below refers to "displayed in h2 element" -->
+    <h7>{{ request.user.email }}</h7><br>
 
     <button class="btn btn-sm btn-outline-primary" id="inbox">Inbox</button>
     <button class="btn btn-sm btn-outline-primary" id="compose">Compose</button>
