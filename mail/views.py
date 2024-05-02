@@ -20,7 +20,7 @@ def index(request):
     else:
         return HttpResponseRedirect(reverse("login"))
 
-
+'''this function composes new mails from the user to the sender'''
 @csrf_exempt
 @login_required
 def compose(request):
@@ -71,7 +71,7 @@ def compose(request):
 
     return JsonResponse({"message": "Email sent successfully."}, status=201)
 
-
+'''this function shows mails according to the mailbox'''
 @login_required
 def mailbox(request, mailbox):
 
@@ -96,6 +96,7 @@ def mailbox(request, mailbox):
     return JsonResponse([email.serialize() for email in emails], safe=False)
 
 
+'''this function handles get and update operations of email(s)'''
 @csrf_exempt
 @login_required
 def email(request, email_id):

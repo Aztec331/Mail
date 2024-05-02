@@ -22,6 +22,9 @@ function compose_email() {
   document.querySelector('#compose-body').value = '';
 }
 
+
+//show the desired mailbox and hide other views
+//mailbox here means jo bhi string recieve hogi instead of mailbox
 function load_mailbox(mailbox) {
   
   // Show the mailbox and hide other views
