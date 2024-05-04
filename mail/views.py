@@ -30,6 +30,7 @@ def compose(request):
         return JsonResponse({"error": "POST request required."}, status=400)
 
     # Check recipient emails
+    # split multiple recipients on the basis of commas ','
     data = json.loads(request.body)
     emails = [email.strip() for email in data.get("recipients").split(",")]
     if emails == [""]:

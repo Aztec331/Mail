@@ -35,6 +35,12 @@ function load_mailbox(mailbox) {
   document.querySelector('#emails-view').innerHTML = `<h3>${mailbox.charAt(0).toUpperCase() + mailbox.slice(1)}</h3>`;
 }
 
+
+// Send Mail: When a user submits the email composition form, add JavaScript code to actually send the email.
+// You’ll likely want to make a POST request to /emails, passing in values for recipients, subject, and body.
+// Once the email has been sent, load the user’s sent mailbox.
+
 function sendmail(){
+  
   
 }
