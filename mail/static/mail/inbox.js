@@ -10,6 +10,12 @@ document.addEventListener('DOMContentLoaded', function() {
   // By default, load the inbox
   load_mailbox('inbox');
 
+  //Remove any existing event listener for the compose form 
+  document.querySelector("#compose-form").removeEventListener('submit', submitHandler);
+
+  //Add submit event listener to the compose form
+  document.querySelector("#compose-form").addEventListener('submit', submitHandler);
+
 });
 
 // Send Mail: When a user submits the email composition form, add JavaScript code to actually send the email.
@@ -26,35 +32,41 @@ function compose_email() {
   document.querySelector('#compose-subject').value = '';
   document.querySelector('#compose-body').value = '';
 
-  document.querySelector('#compose-form').addEventListener('submit', function(event){
-    event.preventDefault(); //Prevent the form from submitting normally
-
-    //Get form values
-    const to = document.querySelector('#compose-recipients').value;
-    const subject = document.querySelector('#compose-subject').value;
-    const body = document.querySelector('#compose-body').value;
-
-    //POST request to send mail
-    fetch('/emails', {
-      method: 'POST',
-      body: JSON.stringify({
-          recipients: to,
-          subject: subject,
-          body: body
-      })
-    })
-    .then(response => response.json())
-    .then(result => {
-        // Print result
-        console.log(result);
-        load_mailbox('sent') //load sent mailbox after the mail is sent
-    })
-    .catch(error => console.error('Error sending mail:', error));
-  });
-
-
-
 }
+
+function submitHandler(event){
+  event.preventDefault(); //Prevent the form from submitting normally
+
+  //Get form values
+  const to = document.querySelector('#compose-recipients').value;
+  const subject = document.querySelector('#compose-subject').value;
+  const body = document.querySelector('#compose-body').value;
+
+  //POST request to send mail
+  fetch('/emails', {
+    method: 'POST',
+    body: JSON.stringify({
+        recipients: to,
+        subject: subject,
+        body: body
+    })
+  })
+  .then(response => response.json())
+  .then(result => {
+      // Print result
+      console.log(result);
+      load_mailbox('sent') //load sent mailbox after the mail is sent
+  })
+  .catch(error => console.error('Error sending mail:', error));
+};
+
+
+
+
+
+
+
+
 
 //show the desired mailbox and hide other views
 //mailbox here means jo bhi string recieve hogi instead of mailbox
