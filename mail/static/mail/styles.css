@@ -1,3 +1,22 @@
 textarea {
     min-height: 400px;
 }
+
+.sender {
+    text-align: left;
+}
+
+.subject {
+    text-align: center;
+}
+
+.timestamp {
+    text-align: right;
+}
+
+#emails-view {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+}
