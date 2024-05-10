@@ -10,13 +10,51 @@ document.addEventListener('DOMContentLoaded', function() {
   // By default, load the inbox
   load_mailbox('inbox');
 
-  //Remove any existing event listener for the compose form 
+  //Remove any existing event listener for the compose form, GOOD PRACTICE
   document.querySelector("#compose-form").removeEventListener('submit', submitHandler);
 
-  //Add submit event listener to the compose form
+  //Add submit event listener to the compose form only after DOM loaded
   document.querySelector("#compose-form").addEventListener('submit', submitHandler);
 
+  // //Get appropriate mailbox
+  const element = document.createElement('div');
+  element.id = 'emails-loop';
+  element.innerHTML = 'This is the content of the div.';
+  element.addEventListener('mouseover', function() {
+      // Change background color when mouse is over the div
+      element.style.backgroundColor = 'lightblue';
+  });
+  element.addEventListener('mouseout', function() {
+      // Reset background color when mouse leaves the div
+      element.style.backgroundColor = '';
+  });
+  document.querySelector('#emails-view').append(element);
+
+  fetch('emails/inbox')
+  .then(response => response.json())
+  .then(emails => {
+    emails.forEach(function(email){
+      
+      
+    })
+
+
+
+
+
+
+
+
+  
+    console.log(emails);
+  })
+
+
 });
+
+
+
+
 
 // Send Mail: When a user submits the email composition form, add JavaScript code to actually send the email.
 // You’ll likely want to make a POST request to /emails, passing in values for recipients, subject, and body.
@@ -34,6 +72,11 @@ function compose_email() {
 
 }
 
+
+
+
+
+//function for addeventListener of id #compose-form(added in DOM)
 function submitHandler(event){
   event.preventDefault(); //Prevent the form from submitting normally
 
@@ -64,10 +107,6 @@ function submitHandler(event){
 
 
 
-
-
-
-
 //show the desired mailbox and hide other views
 //mailbox here means jo bhi string recieve hogi instead of mailbox
 function load_mailbox(mailbox) {
@@ -78,6 +117,9 @@ function load_mailbox(mailbox) {
 
   // Show the mailbox name
   document.querySelector('#emails-view').innerHTML = `<h3>${mailbox.charAt(0).toUpperCase() + mailbox.slice(1)}</h3>`;
+
+
+
 }
 
 
