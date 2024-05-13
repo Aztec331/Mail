@@ -16,64 +16,6 @@ document.addEventListener('DOMContentLoaded', function() {
   //Add submit event listener to the compose form only after DOM loaded
   document.querySelector("#compose-form").addEventListener('submit', submitHandler);
 
-  // //Get appropriate mailbox
-  // const element = document.createElement('div');
-  // element.id = 'emails-loop';
-  // element.innerHTML = 'This is the content of the div.';
-  // element.addEventListener('mouseover', function() {
-  //     // Change background color when mouse is over the div
-  //     element.style.backgroundColor = 'lightblue';
-  // });
-  // element.addEventListener('mouseout', function() {
-  //     // Reset background color when mouse leaves the div
-  //     element.style.backgroundColor = '';
-  // });
-  // document.querySelector('#emails-view').append(element);
-
-  fetch('emails/inbox')
-  .then(response => response.json())
-  .then(emails => {
-    emails.forEach(function(email){
-      //created a div in javascript due to SPA(Single page application)
-      const div = document.createElement('div');
-      //name of the class is emails-loop
-      div.classList.add('emails-loop');
-
-      // div.innerHTML= `
-      //   <span class="sender">${email.sender}</span>
-      //   <span class="sender">${email.subject}</span>
-      //   <span class="sender">${email.timestamp}</span>
-      // `
-      div.innerHTML= `
-      <span class="sender">${email.sender}</span>
-      <span class="sender">${email.subject}</span>
-      <span class="sender">${email.timestamp}</span>
-      `
-
-      document.querySelector('#emails-view').append(div);
-
-
-
-      
-      
-    })
-
-
-
-
-
-
-
-
-  
-    console.log(emails);
-  })
-
-
-
-
-
-
 
 });
 
@@ -123,6 +65,7 @@ function submitHandler(event){
   .then(result => {
       // Print result
       console.log(result);
+      console.log('result is above me')
       load_mailbox('sent') //load sent mailbox after the mail is sent
   })
   .catch(error => console.error('Error sending mail:', error));
@@ -142,6 +85,61 @@ function load_mailbox(mailbox) {
 
   // Show the mailbox name
   document.querySelector('#emails-view').innerHTML = `<h3>${mailbox.charAt(0).toUpperCase() + mailbox.slice(1)}</h3>`;
+
+
+  let url;
+  switch(mailbox){
+    case 'inbox':
+      url = 'emails/inbox';
+      break;
+    case 'sent':
+      url = 'emails/sent';
+      break;
+    case 'archive':
+      url = 'emails/archive';
+      break;
+    default:
+      console.log('Invalid mailbox');
+      return;
+  }
+
+  //fetches mail according to the URL provided by switch case
+  fetch(url)
+  .then(response => response.json())
+  .then(emails => {
+
+    
+    emails.forEach(function(email){
+      //created a div in javascript due to SPA(Single page application)
+      const div = document.createElement('div');
+
+      //class name of element 'div'
+      div.classList.add('emails-loop');
+
+      div.innerHTML= `
+      <span class="sender">${email.sender}</span>
+      <span class="sender">${email.subject}</span>
+      <span class="sender">${email.timestamp}</span>
+      `
+      if(email.read===true){
+        div.style.backgroundColor= 'lightgrey';
+      }
+
+      document.querySelector('#emails-view').append(div);
+      
+    })
+
+    console.log(emails);
+
+  })
+
+
+
+
+
+
+
+
 
 
 
