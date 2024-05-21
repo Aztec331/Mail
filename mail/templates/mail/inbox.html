@@ -19,22 +19,60 @@
 
     <!-- compose-view -->
     <div id="compose-view">
-        <h3>New Email</h3>
+        <h3>Compose</h3>
         <form id="compose-form">
+
             <div class="form-group">
                 From: <input disabled class="form-control" value="{{ request.user.email }}">
             </div>
+            
             <div class="form-group">
                 To: <input id="compose-recipients" class="form-control">
             </div>
+
             <div class="form-group">
                 <input class="form-control" id="compose-subject" placeholder="Subject">
             </div>
+
             <textarea class="form-control" id="compose-body" placeholder="Body"></textarea><br>
+
             <input type="submit" class="btn btn-primary"/> 
         </form>
     </div>
     
+    <!-- detail_emails-view -->
+    <div id="detail_emails-view">
+
+        <div id="detail_subject" class="form-group subject_timestamp_span"> <!--using subject_timestamp_span to span subject and timestamp left and right-->
+            
+        </div>
+
+        <div id="detail_sender" class="form-group">
+            detail_sender
+        </div>
+
+        <div id="detail_reciepents" class="form-group">
+            detail_reciepents
+        </div>
+
+        <div id="detail_body" class="form-group">
+            detail_body
+        </div>
+
+
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+
 {% endblock %}
 
 {% block script %}

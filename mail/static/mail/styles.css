@@ -1,3 +1,21 @@
 textarea {
     min-height: 400px;
 }
+
+/* this is the class for the div element that we created in inbox.js whose name is div  */
+.emails-loop {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 100px;
+    border: 1px solid rgb(0, 0, 0, 0.12); 
+    padding: 5px 10px;
+    border-radius: 5px
+}   
+
+
+.subject_timestamp_span{
+    background-color: rgba(255, 0, 0, 0.676);
+    display: flex;
+    justify-content: space-between;
+}
