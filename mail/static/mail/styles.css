@@ -1,5 +1,6 @@
 textarea {
     min-height: 400px;
+    width: 400px;
 }
 
 /* this is the class for the div element that we created in inbox.js whose name is div  */
