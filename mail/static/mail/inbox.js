@@ -158,7 +158,7 @@ function load_mailbox(mailbox) {
 
 
 
-//function of addEventlistener of indivisual div's from load_mailbox function
+//function of addEventlistener of indivisual div's from "load_mailbox function"
 //let all the details of the mail load first, then only decide what view to show 
 //and what view to hide
 function detail_email(email_id){

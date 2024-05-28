@@ -29,16 +29,16 @@ textarea {
     display: flex;
     padding: 0 5px;
     overflow: hidden;
-    text-overflow: ellipsis;
+    text-overflow: clip;
     white-space: nowrap;
 }
 
 .email-div span.sender{
-    flex-basis: 20%;
+    flex-basis: 15%;
 }
 
 .email-div span.subject{
-    flex-basis: 50%;
+    flex-basis: 40%;
 }
 
 .email-div span.timestamp{
@@ -47,5 +47,4 @@ textarea {
 
 .email-div span.archive{
     flex-basis: 3%;
-    text-align: justify;
 }
