@@ -43,8 +43,9 @@
     <!-- detail_emails-view -->
     <div id="detail_emails-view">
 
-        <div id="detail_subject" class="form-group subject_timestamp_span"> <!--using subject_timestamp_span to span subject and timestamp left and right-->
-            
+        <div class="form-group subject_timestamp_span"> <!--using subject_timestamp_span to span subject and timestamp left and right-->
+            <h3 id="detail_subject"></h3>
+            <div id="detail_timestamp"></div>
         </div>
 
         <div id="detail_sender" class="form-group">
@@ -55,16 +56,11 @@
             detail_reciepents
         </div>
 
-        <div id="detail_body" class="form-group">
-            detail_body
+        <div class="form-group">
+            <textarea id="detail_body" class="form-control" disabled>{{ request.user.email }}</textarea>
         </div>
-
-        <textarea id="detail_body">
-            newday
-        </textarea>
-
-
-
+        
+        
     </div>
 
 
