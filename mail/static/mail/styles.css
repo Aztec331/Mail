@@ -29,10 +29,11 @@ textarea {
     display: flex;
     padding: 0 5px;
     overflow: hidden;
-    text-overflow: clip;
+    text-overflow: ellipsis;
     white-space: nowrap;
 }
 
+/* inbox and archive mails styling */
 .email-div span.sender{
     flex-basis: 15%;
 }
@@ -47,4 +48,18 @@ textarea {
 
 .email-div span.archive{
     flex-basis: 3%;
+}
+
+
+/* sent mailbox styling */
+.email-div span.sent-sender{
+    flex-basis: 20%;
+}
+
+.email-div span.sent-subject{
+    flex-basis: 60%;
+}
+
+.email-div span.sent-timestamp{
+    flex-basis: 15%;
 }

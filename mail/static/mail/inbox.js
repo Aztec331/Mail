@@ -90,22 +90,17 @@ function load_mailbox(mailbox) {
 
   //run a switch case for urls of different mailboxes
   let url;
-  switch(mailbox){
-    case 'inbox':
-      url = 'emails/inbox';
-      break;
-    case 'sent':
-      url = 'emails/sent';
-      break;
-    case 'archive':
-      url = 'emails/archive';
-      break;
-    default:
-      console.log('Invalid mailbox');
-      return;
+  if(mailbox==="inbox"){
+    url = "emails/inbox";
+  }
+  else if(mailbox==="sent"){
+    url = "emails/sent";
+  }
+  else if(mailbox==="archive"){
+    url = "emails/archive";
   }
 
-  //fetches mail according to the URL provided by switch case
+  //fetches mail according to the URL provided by if else 
   fetch(url)
   .then(response => response.json())
   .then(emails => {
@@ -121,14 +116,36 @@ function load_mailbox(mailbox) {
 
       //populating div element with loop variable 'email'
       //and using span tag
-      div.innerHTML= `
-      <span class="sender">${email.sender}</span>
-      <span class="subject">${email.subject}</span>
-      <span class="timestamp">${email.timestamp}</span>
-      <span class="archive"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-archive" viewBox="0 0 16 16">
-      <path d="M0 2a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1v7.5a2.5 2.5 0 0 1-2.5 2.5h-9A2.5 2.5 0 0 1 1 12.5V5a1 1 0 0 1-1-1zm2 3v7.5A1.5 1.5 0 0 0 3.5 14h9a1.5 1.5 0 0 0 1.5-1.5V5zm13-3H1v2h14zM5 7.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5"/>
-    </svg></span>
-      `
+
+      if (mailbox==="inbox"){
+        div.innerHTML= `
+        <span class="sender">${email.sender}</span>
+        <span class="subject">${email.subject}</span>
+        <span class="timestamp">${email.timestamp}</span>
+        <span class="archive"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-archive" viewBox="0 0 16 16">
+        <path d="M0 2a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1v7.5a2.5 2.5 0 0 1-2.5 2.5h-9A2.5 2.5 0 0 1 1 12.5V5a1 1 0 0 1-1-1zm2 3v7.5A1.5 1.5 0 0 0 3.5 14h9a1.5 1.5 0 0 0 1.5-1.5V5zm13-3H1v2h14zM5 7.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5"/>
+      </svg></span>
+        `;
+      }
+
+      else if(mailbox==="sent"){
+        div.innerHTML= `
+        <span class="sent-sender">${email.sender}</span>
+        <span class="sent-subject">${email.subject}</span>
+        <span class="sent-timestamp">${email.timestamp}</span>`;
+        
+      }
+
+      else if(mailbox==="archive"){
+                div.innerHTML= `
+        <span class="sender">${email.sender}</span>
+        <span class="subject">${email.subject}</span>
+        <span class="timestamp">${email.timestamp}</span>
+        <span class="archive"><i class="material-icons" style="font-size:36px">unarchive</i></span>
+        `;
+      }
+
+
       //changing color of the div if it is read by the user
       if(email.read===false){
         div.style.backgroundColor= 'lightgrey';
@@ -145,6 +162,9 @@ function load_mailbox(mailbox) {
         
       });
 
+      
+
+
     })
     //forEach ends above me
 
@@ -158,7 +178,7 @@ function load_mailbox(mailbox) {
 
 
 
-//function of addEventlistener of indivisual div's from "load_mailbox function"
+//function of addEventlistener of indivisual div's from "load_mailbox function 
 //let all the details of the mail load first, then only decide what view to show 
 //and what view to hide
 function detail_email(email_id){
