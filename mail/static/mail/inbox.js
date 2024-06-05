@@ -111,23 +111,25 @@ function load_mailbox(mailbox) {
       //name of the element is div and constants name too is div
       const div = document.createElement('div'); //indivisual email div
 
-      //class name of element 'div'
+      //class name of each indivisual email named as-'div'
       div.classList.add('email-div');
 
       //populating div element with loop variable 'email'
-      //and using span tag
+      //and using span tag for different areas like for sender,subject etc 
 
+      //inbox mails which have archive button
       if (mailbox==="inbox"){
         div.innerHTML= `
         <span class="sender">${email.sender}</span>
         <span class="subject">${email.subject}</span>
         <span class="timestamp">${email.timestamp}</span>
-        <span class="archive"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-archive" viewBox="0 0 16 16">
-        <path d="M0 2a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1v7.5a2.5 2.5 0 0 1-2.5 2.5h-9A2.5 2.5 0 0 1 1 12.5V5a1 1 0 0 1-1-1zm2 3v7.5A1.5 1.5 0 0 0 3.5 14h9a1.5 1.5 0 0 0 1.5-1.5V5zm13-3H1v2h14zM5 7.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5"/>
-      </svg></span>
-        `;
+        <span class="archive"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-in-down" viewBox="0 0 16 16">
+        <path fill-rule="evenodd" d="M3.5 6a.5.5 0 0 0-.5.5v8a.5.5 0 0 0 .5.5h9a.5.5 0 0 0 .5-.5v-8a.5.5 0 0 0-.5-.5h-2a.5.5 0 0 1 0-1h2A1.5 1.5 0 0 1 14 6.5v8a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 14.5v-8A1.5 1.5 0 0 1 3.5 5h2a.5.5 0 0 1 0 1z"/>
+        <path fill-rule="evenodd" d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708z"/>
+        </svg></span>`;
       }
 
+      //sent mails
       else if(mailbox==="sent"){
         div.innerHTML= `
         <span class="sent-sender">${email.sender}</span>
@@ -136,13 +138,16 @@ function load_mailbox(mailbox) {
         
       }
 
+      //archive mails which have unarchive button
       else if(mailbox==="archive"){
-                div.innerHTML= `
+        div.innerHTML= `
         <span class="sender">${email.sender}</span>
         <span class="subject">${email.subject}</span>
         <span class="timestamp">${email.timestamp}</span>
-        <span class="archive"><i class="material-icons" style="font-size:36px">unarchive</i></span>
-        `;
+        <span class="unarchive"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-in-up" viewBox="0 0 16 16">
+        <path fill-rule="evenodd" d="M3.5 10a.5.5 0 0 1-.5-.5v-8a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 .5.5v8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 0 0 1h2A1.5 1.5 0 0 0 14 9.5v-8A1.5 1.5 0 0 0 12.5 0h-9A1.5 1.5 0 0 0 2 1.5v8A1.5 1.5 0 0 0 3.5 11h2a.5.5 0 0 0 0-1z"/>
+        <path fill-rule="evenodd" d="M7.646 4.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 5.707V14.5a.5.5 0 0 1-1 0V5.707L5.354 7.854a.5.5 0 1 1-.708-.708z"/>
+        </svg></span>`;
       }
 
 
@@ -159,12 +164,27 @@ function load_mailbox(mailbox) {
       //eventlistener for div which shows detailed email
       div.addEventListener('click',() => {
         detail_email(email.id)
-        
       });
 
+      //archiving mail when you click on the 
+      const archivebutton = div.querySelector('.archive svg');
+      if (archivebutton) {
+        archivebutton.addEventListener('click', (event) => {
+          event.stopPropagation();
+          archive_mail(email.id);
+        });
+      }
+
+      const unarchivebutton = div.querySelector('.unarchive svg');
+      if (unarchivebutton) {
+        unarchivebutton.addEventListener('click', (event) => {
+          event.stopPropagation();
+          unarchive_mail(email.id);
+        });
+      }
+
       
-
-
+  
     })
     //forEach ends above me
 
@@ -212,4 +232,32 @@ function detail_email(email_id){
 
 }
 
+
+//archives the emails 
+function archive_mail(email_id) {
+  
+  fetch(`/emails/${email_id}`, {
+    method: 'PUT',
+    body: JSON.stringify({
+      archived: true
+    })
+  })
+
+  //load inbox after archiving
+  load_mailbox("inbox")
+}
+
+//unarchives the emails
+function unarchive_mail(email_id){
+
+  fetch(`/emails/${email_id}`, {
+    method: 'PUT',
+    body: JSON.stringify({
+        archived: false
+    })
+  })
+
+  //load inbox after unarchiving
+  load_mailbox("inbox")
+}
 

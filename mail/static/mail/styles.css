@@ -1,8 +1,6 @@
 textarea {
     min-height: 400px;
     width: 700px;
-    background: red;
-    background-color: red;
 }
 
 /* class to span subject and timestamp horizontally */
@@ -22,7 +20,13 @@ textarea {
     border-radius: 5px;
     font-size: 15px;
     
-}   
+} 
+
+/* hover email effect */
+.email-div:hover {
+    background-color: rgba(0, 0, 0, 0.1); /* Light gray overlay */
+  }
+  
 
 /* selecting all span elements in the div  */
 .email-div span {
@@ -46,10 +50,15 @@ textarea {
     flex-basis: 20%;
 }
 
+/* archive button in inbox mailbox */
 .email-div span.archive{
     flex-basis: 3%;
 }
 
+/* unarchive button in archive mailbox */
+.email-div span.unarchive{
+    flex-basis: 3%;
+}
 
 /* sent mailbox styling */
 .email-div span.sent-sender{
@@ -63,3 +72,20 @@ textarea {
 .email-div span.sent-timestamp{
     flex-basis: 15%;
 }
+
+
+/* hover archive mail effect */
+.archive:hover svg{
+    background-color: rgba(0, 0, 0, 0.305); /* Light gray overlay */
+    border: 50px;
+    border-width: 10px;
+}
+
+/* hover unarchive mail effect */
+.unarchive:hover svg{
+    background-color: rgba(0, 0, 0, 0.305); /* Light gray overlay */
+}
+
+
+
+  
