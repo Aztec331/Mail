@@ -36,7 +36,7 @@
 
             <textarea class="form-control" id="compose-body" placeholder="Body"></textarea><br>
 
-            <input type="submit" class="btn btn-outline-primary">
+            <input type="submit" class="btn btn-primary">
         </form>
     </div>
     
@@ -49,20 +49,43 @@
         </div>
 
         <div id="detail_sender" class="form-group">
-            detail_sender
+            
         </div>
 
         <div id="detail_reciepents" class="form-group">
-            detail_reciepents
+            
         </div>
 
         <div class="form-group">
             <textarea id="detail_body" class="form-control" disabled>{{ request.user.email }}</textarea>
         </div>
         
-        <input type="submit" class="btn btn-primary" name="reply" value="↩ Reply"> 
+        <input type="submit" class="btn btn-primary" name="reply" value="↩ Reply" id="reply"> 
     </div>
 
+
+    <!-- reply-compose-view -->
+    <!-- <div id="reply-compose-view">
+        <h3>Compose</h3>
+        <form id="reply-compose-form">
+
+            <div class="form-group">
+                From: <input disabled class="form-control" value="{{ request.user.email }}">
+            </div>
+            
+            <div class="form-group">
+                To: <input id="reply-compose-recipients" class="form-control">
+            </div>
+
+            <div class="form-group">
+                <input class="form-control" id="reply-compose-subject" placeholder="Subject">
+            </div>
+
+            <textarea class="form-control" id="reply-compose-body" placeholder="Body"></textarea><br>
+
+            <input type="submit" class="btn btn-primary" value="send">
+        </form>
+    </div> -->
 
 
 

@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', function() {
   //Add submit event listener to the compose form only after DOM loaded
   document.querySelector("#compose-form").addEventListener('submit', submitHandler);
 
-
+  
 });
 
 
@@ -183,7 +183,25 @@ function load_mailbox(mailbox) {
         });
       }
 
-      
+      //adding an event listener to reply button in detail-email view
+      document.querySelector("#reply").addEventListener('click',()=>{
+
+        //hiding other views and showing compose view with pre-filled data
+        document.querySelector('#emails-view').style.display = 'none';
+        document.querySelector('#detail_emails-view').style.display = 'none';
+        document.querySelector('#compose-view').style.display = 'block';
+        
+        //pre-fill email sender
+        document.getElementById('compose-recipients').value= `${email.sender}`
+
+        //pre-fill email subject
+        if (!document.getElementById('compose-subject').value.includes('Re:')) {
+          document.getElementById('compose-subject').value = `Re: ${email.subject}`;
+        } else {
+          document.getElementById('compose-subject').value = email.subject;
+        }
+
+      })
   
     })
     //forEach ends above me
@@ -258,6 +276,7 @@ function unarchive_mail(email_id){
   })
 
   //load inbox after unarchiving
+  //test comment
   load_mailbox("inbox")
 }
 
