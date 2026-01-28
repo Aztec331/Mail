@@ -1,1 +1,0 @@
-numbers.forEach(number => number*2)

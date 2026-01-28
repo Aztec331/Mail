@@ -1,1 +1,0 @@
-DELETE FROM mail_user WHERE id = 1;

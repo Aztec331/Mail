@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 
 import os
 
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -25,7 +27,7 @@ SECRET_KEY = '05$4$3aew(8ywondz$g!k4m779pbvn9)euj0zp7-ae*x@4pxr+'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -81,15 +83,15 @@ WSGI_APPLICATION = 'project3.wsgi.application'
 #     }
 # }
 
-# Database configuration for PostgreSQL
+# # Database configuration for PostgreSQL
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'Mail',  # Your PostgreSQL database name
+        'NAME': 'aztec',  # Your PostgreSQL database name
         'USER': 'postgres',  # Your PostgreSQL username
-        'PASSWORD': 'rautkichutkali59',  # Your PostgreSQL password
+        'PASSWORD': 'aztec',  # Your PostgreSQL password
         'HOST': 'localhost',  # Your PostgreSQL host (likely localhost)
-        'PORT': 5432,  # Your PostgreSQL port (default 5432)
+        'PORT': '5432',  # Your PostgreSQL port (default 5432)
     }
 }
 
@@ -133,3 +135,6 @@ USE_TZ = False
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'mail', 'static')]
+
