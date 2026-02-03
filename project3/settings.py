@@ -76,24 +76,24 @@ WSGI_APPLICATION = 'project3.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-#     }
-# }
-
-# # Database configuration for PostgreSQL
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'aztec',  # Your PostgreSQL database name
-        'USER': 'postgres',  # Your PostgreSQL username
-        'PASSWORD': 'aztec',  # Your PostgreSQL password
-        'HOST': 'localhost',  # Your PostgreSQL host (likely localhost)
-        'PORT': '5432',  # Your PostgreSQL port (default 5432)
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
+
+# # Database configuration for PostgreSQL
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'aztec',  # Your PostgreSQL database name
+#         'USER': 'postgres',  # Your PostgreSQL username
+#         'PASSWORD': 'aztec',  # Your PostgreSQL password
+#         'HOST': 'localhost',  # Your PostgreSQL host (likely localhost)
+#         'PORT': '5432',  # Your PostgreSQL port (default 5432)
+#     }
+# }
 
 
 AUTH_USER_MODEL = 'mail.User'

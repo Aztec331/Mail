@@ -1,0 +1,1 @@
+DELETE from mail_user where id=5;
